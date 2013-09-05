@@ -1,0 +1,3 @@
+[submodule "web_automation"]
+	path = web_automation
+	url = git@github.com:martinburchell/web_automation.git
