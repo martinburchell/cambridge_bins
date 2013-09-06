@@ -7,8 +7,10 @@ import sys
 from council_website import CouncilWebsite
 
 if len(sys.argv) != 4:
-    print "Syntax {} '<address>' '<postcode>' <black|blue|green|all>".format(
+    error = "Syntax {} '<address>' '<postcode>' <black|blue|green>".format(
         sys.argv[0])
+
+    print error
     exit(1)
 
 
