@@ -4,8 +4,12 @@ import logging
 import os
 import sys
 
-from location_settings import *
 from council_website import CouncilWebsite
+
+if len(sys.argv) != 3:
+    print "Syntax {} '<address>' '<postcode>'".format(sys.argv[0])
+    exit(1)
+
 
 script_dir = os.path.dirname(sys.argv[0])
 
@@ -14,4 +18,8 @@ logger = logging.getLogger('check_collection_date')
 handler = logging.FileHandler(os.path.join(log_dir,'check_collection_date.log'))
 logger.addHandler(handler)
 website = CouncilWebsite(logger)
-website.check_collection_date(LOCATION_ADDRESS, LOCATION_POSTCODE)
+
+address = sys.argv[1]
+postcode = sys.argv[2]
+
+website.check_collection_date(address, postcode)
