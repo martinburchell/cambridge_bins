@@ -6,8 +6,9 @@ import sys
 
 from council_website import CouncilWebsite
 
-if len(sys.argv) != 3:
-    print "Syntax {} '<address>' '<postcode>'".format(sys.argv[0])
+if len(sys.argv) != 4:
+    print "Syntax {} '<address>' '<postcode>' <black|blue|green|all>".format(
+        sys.argv[0])
     exit(1)
 
 
@@ -21,5 +22,6 @@ website = CouncilWebsite(logger)
 
 address = sys.argv[1]
 postcode = sys.argv[2]
+colour = sys.argv[3]
 
-website.check_collection_date(address, postcode)
+website.check_collection_date(address, postcode, colour)
