@@ -34,6 +34,5 @@ nosetests.xml
 .project
 .pydevproject
 
-log
-location_settings.py
+log/*.log
 *~
