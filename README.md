@@ -1,7 +1,7 @@
 cambridge_bins
 ==============
 
-Scrapes the Cambridge City Council Website and lets you know if the bins need to be put out tomorrow
+Scrapes the Cambridge City Council website and lets you know if the bins need to be put out tomorrow
 
 Examples:
 
@@ -13,3 +13,11 @@ Prerequisites:
 
 * lxml
 * BeautifulSoup
+
+Installation:
+
+After cloning:
+    $ git submodule init
+    $ git submodule update
+
+from within the project directory.
