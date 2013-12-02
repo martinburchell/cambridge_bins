@@ -37,12 +37,14 @@ class CouncilWebsite(Website):
 
         for div in selector(root):
             iso_date = self.find_date_in_div(div)
+
             if iso_date is not None:
                 bin_type = div.text.strip()
-                if bin_type == 'Blue and green bins':
+
+                if bin_type.lower() == 'blue and green bins':
                     dates['blue'].append(iso_date)
                     dates['green'].append(iso_date)
-                elif bin_type == 'Black bins':
+                elif bin_type.lower() == 'black bins':
                     dates['black'].append(iso_date)
 
         return dates
