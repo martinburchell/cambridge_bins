@@ -1,5 +1,7 @@
 import datetime
+import re
 import time
+import string
 import urllib
 
 from lxml.cssselect import CSSSelector
@@ -54,10 +56,16 @@ class CouncilWebsite(Website):
         
         bold = div.find('b')
         if bold is not None:
-            date_text = "{} {}".format(bold.text_content(),
-                                       str(datetime.date.today().year))
+            pattern = re.compile('[\W_]+')
+            pattern.sub('', string.printable)
+            date_text = re.sub(r'[^a-zA-Z0-9]', '', bold.text_content())
+
+            full_date_text = "{}{}".format(date_text,
+                                           str(datetime.date.today().year))
 
             iso_date = datetime.datetime(
-                *(time.strptime(date_text, '%A%d %B %Y')[0:6])).date()
+                *(time.strptime(full_date_text, '%A%d%B%Y')[0:6])).date()
+
+            print iso_date
 
         return iso_date
