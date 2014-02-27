@@ -66,6 +66,4 @@ class CouncilWebsite(Website):
             iso_date = datetime.datetime(
                 *(time.strptime(full_date_text, '%A%d%B%Y')[0:6])).date()
 
-            print iso_date
-
         return iso_date
