@@ -10,7 +10,7 @@ from email.mime.text import MIMEText
 from council_website import CouncilWebsite
 
 if len(sys.argv) not in (4,7):
-    error = "Syntax {0} '<address>' '<postcode>' <black|blue|green> [<email_subject> <email_to> <email_from>]".format(
+    error = "Syntax {0} '<address>' '<postcode>' <black|blue|green> [<email_subject> <email_from> <email_to>]".format(
         sys.argv[0])
 
     print error
@@ -30,8 +30,8 @@ colour = sys.argv[3]
 
 try:
     email_subject = sys.argv[4] 
-    email_to = sys.argv[5]
-    email_from = sys.argv[6]
+    email_from = sys.argv[5]
+    email_to = sys.argv[6]
 
     send_email = True
 
@@ -45,8 +45,8 @@ if website.bin_collected_tomorrow(address, postcode, colour):
         email = MIMEText(message)
 
         email['Subject'] = email_subject
-        email['From'] = email_to
-        email['To'] = email_from
+        email['From'] = email_from
+        email['To'] = email_to
 
         s = smtplib.SMTP('localhost')
         s.sendmail(email_from, [email_to], email.as_string())

@@ -9,6 +9,10 @@ Examples:
     $ ./check_collection_date.py '11 Rustat Road' 'CB1 3QR' green
     $ ./check_collection_date.py '33 Emery Street' 'CB1 2AX' black
 
+to send email:
+    $ ./check_collection_date.py '33 Emery Street' 'CB1 2AX' black sender@example.com recipient@example.com
+
+
 Prerequisites:
 
 * lxml
