@@ -14,20 +14,19 @@ class CouncilWebsite(Website):
     def __init__(self, logger=None):
         super(CouncilWebsite, self).__init__('cambridge.jdi-consult.net')
 
-    def check_collection_date(self, address, postcode, colour):
+    def bin_collected_tomorrow(self, address, postcode, colour):
         dates = self.get_all_collection_dates(address, postcode)
 
         next_date = dates[colour][0]
         tomorrow = self.get_tomorrows_date()
 
-        if next_date == tomorrow:
-            print "The {} bin will be collected tomorrow so don't forget to put it out".format(colour)
+        return next_date == tomorrow
 
     def get_tomorrows_date(self):
         return datetime.date.today() + datetime.timedelta(days=1)
             
     def get_all_collection_dates(self, address, postcode):
-        bins_page = self.insecure_domain + '/bins/bins.php?address={}&postcode={}'.format(urllib.quote_plus(address),urllib.quote_plus(postcode))
+        bins_page = self.insecure_domain + '/bins/bins.php?address={0}&postcode={1}'.format(urllib.quote_plus(address),urllib.quote_plus(postcode))
 
         root = self.send_request_and_return_dom(bins_page)
         selector = CSSSelector('.inside div div')
