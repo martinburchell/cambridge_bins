@@ -48,7 +48,7 @@ if website.bin_collected_tomorrow(address, postcode, colour):
         email['From'] = email_from
         email['To'] = email_to
 
-        s = smtplib.SMTP('localhost')
+        s = smtplib.SMTP('127.0.0.1')
         s.sendmail(email_from, [email_to], email.as_string())
         s.quit()
     else:
