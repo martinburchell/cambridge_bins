@@ -10,7 +10,7 @@ Examples:
     $ ./check_collection_date.py '33 Emery Street' 'CB1 2AX' black
 
 to send email:
-    $ ./check_collection_date.py '33 Emery Street' 'CB1 2AX' black sender@example.com recipient@example.com
+    $ ./check_collection_date.py '33 Emery Street' 'CB1 2AX' black 'Bin Reminder' sender@example.com recipient@example.com
 
 
 Prerequisites:
