@@ -9,7 +9,7 @@ from email.mime.text import MIMEText
 
 from council_website import CouncilWebsite
 
-if len(sys.argv) not in (4,7):
+if len(sys.argv) not in (4, 7):
     error = "Syntax {0} '<address>' '<postcode>' <black|blue|green> [<email_subject> <email_from> <email_to>]".format(
         sys.argv[0])
 
@@ -29,7 +29,7 @@ postcode = sys.argv[2]
 colour = sys.argv[3]
 
 try:
-    email_subject = sys.argv[4] 
+    email_subject = sys.argv[4]
     email_from = sys.argv[5]
     email_to = sys.argv[6]
 

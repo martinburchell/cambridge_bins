@@ -8,6 +8,7 @@ from lxml.cssselect import CSSSelector
 
 from web_automation.website import Website
 
+
 class CouncilWebsite(Website):
     colours = ('black', 'blue', 'green')
 
@@ -24,7 +25,7 @@ class CouncilWebsite(Website):
 
     def get_tomorrows_date(self):
         return datetime.date.today() + datetime.timedelta(days=1)
-            
+
     def get_all_collection_dates(self, address, postcode):
         bins_page = self.insecure_domain + '/bins/bins.php?address={0}&postcode={1}'.format(urllib.quote_plus(address),urllib.quote_plus(postcode))
 
@@ -52,7 +53,7 @@ class CouncilWebsite(Website):
 
     def find_date_in_div(self, div):
         iso_date = None
-        
+
         bold = div.find('b')
         if bold is not None:
             pattern = re.compile('[\W_]+')
