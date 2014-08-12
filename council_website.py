@@ -30,7 +30,7 @@ class CouncilWebsite(Website):
         bins_page = self.insecure_domain + '/bins/bins.php?address={0}&postcode={1}'.format(urllib.quote_plus(address),urllib.quote_plus(postcode))
 
         root = self.send_request_and_return_dom(bins_page)
-        selector = CSSSelector('.inside div div')
+        selector = CSSSelector('.page div div')
 
         dates = {}
 
