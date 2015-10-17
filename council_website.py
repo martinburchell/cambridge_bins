@@ -26,6 +26,11 @@ class CouncilWebsite(Website):
     def get_tomorrows_date(self):
         return datetime.date.today() + datetime.timedelta(days=1)
 
+    def get_next_collection_date(self, address, postcode, colour):
+        dates = self.get_all_collection_dates(address, postcode)
+
+        return dates[colour][0]
+
     def get_all_collection_dates(self, address, postcode):
         bins_page = self.insecure_domain + '/bins/bins.php?address={0}&postcode={1}'.format(urllib.quote_plus(address),urllib.quote_plus(postcode))
 
@@ -52,18 +57,20 @@ class CouncilWebsite(Website):
         return dates
 
     def find_date_in_div(self, div):
-        iso_date = None
+        date = None
 
         bold = div.find('b')
         if bold is not None:
-            pattern = re.compile('[\W_]+')
-            pattern.sub('', string.printable)
             date_text = re.sub(r'[^a-zA-Z0-9]', '', bold.text_content())
 
-            full_date_text = "{}{}".format(date_text,
-                                           str(datetime.date.today().year))
+            matches = re.search('([0-9]+)([a-zA-Z]+)', date_text)
 
-            iso_date = datetime.datetime(
-                *(time.strptime(full_date_text, '%A%d%B%Y')[0:6])).date()
+            day = int(matches.group(1))
+            month = time.strptime(matches.group(2), '%B').tm_mon
+            year = datetime.date.today().year
 
-        return iso_date
+            date = datetime.date(year, month, day)
+            if date < datetime.date.today():
+                date = datetime.date(year+1, month, day)
+
+        return date
